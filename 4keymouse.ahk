@@ -1,0 +1,43 @@
+﻿#Requires AutoHotkey v2.0
+
+; لیست تمام برنامه‌هایی که در آن‌ها دکمه‌های موس عمل می‌کنند
+apps := [
+    "msedge.exe",       ; Microsoft Edge
+    "chrome.exe",       ; Google Chrome
+    "firefox.exe",      ; Mozilla Firefox
+    "opera.exe",        ; Opera
+    "obsidian.exe",     ; Obsidian
+    "explorer.exe",     ; File Explorer
+    "notepad.exe",      ; Notepad
+    "freeplane.exe",    ; Freeplane
+    "PDFXEdit.exe",     ; PDF-XChange Editor
+    "Code.exe",         ; ویژیول  استودیوکد
+    "Everything.exe",   ; Everything
+    "Paint.exe",        ; Paint   ; ← اینجا دست نمی‌زنیم چون می‌خوای ساختار ثابت بماند
+    "winword.exe"       ; Microsoft Word / Writage
+]
+
+; تابع بررسی اینکه آیا برنامه فعال در لیست هست یا نه
+IsTargetApp() {
+    global apps
+    win := WinGetProcessName("A")
+    for app in apps {
+        if (win = app)
+            return true
+    }
+    return false
+}
+
+; --- این بخش فقط برای Paint اضافه شده (حداقل تغییر ممکن) ---
+#HotIf WinActive("ahk_exe mspaint.exe")
+XButton1::Send("!{F4}")
+#HotIf
+; --------------------------------------------------------------
+
+; دکمه ۴ موس → Ctrl+W (بستن تب یا فایل)
+#HotIf IsTargetApp()
+XButton1::Send("^w")
+
+; دکمه ۵ موس → Alt+Left (برگشت یا عقب)
+XButton2::Send("!{Left}")
+#HotIf
