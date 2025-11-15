@@ -1,5 +1,5 @@
 ﻿#Requires AutoHotkey v2.0
-
+.این نسخه فقط تب ها را می بندد نه پنجره
 ; لیست تمام برنامه‌هایی که در آن‌ها دکمه‌های موس عمل می‌کنند
 apps := [
     "msedge.exe",       ; Microsoft Edge
@@ -41,3 +41,4 @@ XButton1::Send("^w")
 ; دکمه ۵ موس → Alt+Left (برگشت یا عقب)
 XButton2::Send("!{Left}")
 #HotIf
+
